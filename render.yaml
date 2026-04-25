@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: pcap-pin-renderer
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 3333
+      - key: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD
+        value: "false"
