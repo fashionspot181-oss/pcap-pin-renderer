@@ -14,7 +14,7 @@ app.post('/render', async (req, res) => {
     let browser;
     try {
         browser = await puppeteer.launch({
-            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+            executablePath: puppeteer.executablePath(),
             headless: true,
             args: [
                 '--no-sandbox',
