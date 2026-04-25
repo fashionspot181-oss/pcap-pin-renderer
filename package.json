@@ -1,0 +1,13 @@
+{
+  "name": "pcap-pin-renderer",
+  "version": "1.0.0",
+  "description": "Puppeteer microservice for PCAP pin image rendering",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.1",
+    "puppeteer": "^21.11.0"
+  }
+}
