@@ -14,18 +14,33 @@ app.post('/render', async (req, res) => {
     let browser;
     try {
         browser = await puppeteer.launch({
-            headless: 'new',
-            args: ['--no-sandbox','--disable-setuid-sandbox','--disable-dev-shm-usage','--disable-gpu','--font-render-hinting=none'],
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu'
+            ]
         });
+
         const page = await browser.newPage();
         await page.setViewport({ width, height, deviceScaleFactor });
-        await page.setContent(html, { waitUntil: ['networkidle0','load'], timeout: 30000 });
-        await new Promise(r => setTimeout(r, 500)); // font render delay
+
+        await page.setContent(html, {
+            waitUntil: ['networkidle0','load'],
+            timeout: 30000
+        });
+
+        await new Promise(r => setTimeout(r, 500));
+
         const screenshot = await page.screenshot({
-            type: 'png', encoding: 'base64',
+            type: 'png',
+            encoding: 'base64',
             clip: { x:0, y:0, width, height },
         });
+
         res.json({ image: screenshot });
+
     } catch(err) {
         console.error('[PCAP Renderer]', err);
         res.status(500).json({ error: err.message });
@@ -34,4 +49,4 @@ app.post('/render', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => console.log(`[PCAP Renderer] http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`[PCAP Renderer] running on port ${PORT}`));
