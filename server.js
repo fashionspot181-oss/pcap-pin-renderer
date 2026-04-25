@@ -15,11 +15,10 @@ app.post('/render', async (req, res) => {
     try {
         browser = await puppeteer.launch({
             headless: true,
+            executablePath: puppeteer.executablePath(),
             args: [
                 '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-gpu'
+                '--disable-setuid-sandbox'
             ]
         });
 
