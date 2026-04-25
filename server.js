@@ -1,5 +1,5 @@
 const express   = require('express');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const app       = express();
 const PORT      = process.env.PORT || 3333;
 
@@ -14,7 +14,7 @@ app.post('/render', async (req, res) => {
     let browser;
     try {
         browser = await puppeteer.launch({
-            executablePath: puppeteer.executablePath(),
+            executablePath: '/usr/bin/chromium-browser',
             headless: true,
             args: [
                 '--no-sandbox',

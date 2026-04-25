@@ -4,11 +4,10 @@
   "description": "Puppeteer microservice for PCAP pin image rendering",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "postinstall": "npx puppeteer browsers install chrome"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.22.1",
-    "puppeteer": "^21.11.0"
+    "puppeteer-core": "^21.11.0"
   }
 }
