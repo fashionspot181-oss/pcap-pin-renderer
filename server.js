@@ -14,14 +14,10 @@ app.post('/render', async (req, res) => {
     let browser;
     try {
         const launchOptions = {
-            headless: 'new',
+            headless: true, // ✅ FIXED
             args: [
                 '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-gpu',
-                '--no-zygote',
-                '--single-process',
+                '--disable-setuid-sandbox'
             ],
         };
 
